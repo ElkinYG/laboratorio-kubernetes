@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mi-config
+data:
+  APP_ENV: "desarrollo"
+  mensaje.txt: |
+    Hola este mensaje es un mensaje de prueba para el configmap
+
+# kubectl apply -f configmap.yaml
+# kubectl get configmaps -n default

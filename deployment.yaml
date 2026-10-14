@@ -19,5 +19,5 @@ spec:
         ports:
         - containerPort: 80
 # kubectl apply -f deployment.yaml
-# kubectl get deployments -n my-namespace
-# kubectl get pods -n my-namespace
+# kubectl get deployments -n default
+# kubectl get pods -n default

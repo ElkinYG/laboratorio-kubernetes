@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mi-pod
+spec:
+  containers:
+  - name: mi-app
+    image: mi-app:1.0
+    imagePullPolicy: Never
+
+    env:
+      - name: APP_ENV
+        valueFrom:
+          configMapKeyRef:
+            name: mi-config
+            key: APP_ENV
+
+      - name: DB_USER
+        valueFrom:
+          secretKeyRef:
+            name: mi-secret
+            key: DB_USER
+
+      - name: DB_PASS
+        valueFrom:
+          secretKeyRef:
+            name: mi-secret
+            key: DB_PASS
+
+    volumeMounts:
+    - name: vol-config
+      mountPath: /config
+      readOnly: true
+
+  volumes:
+  - name: vol-config
+    configMap:
+      name: mi-config
+
+
+# kubectl apply -f pod.yaml
+# kubectl get pod -n default
+# kubectl logs pod-prueba-configmap -n default
